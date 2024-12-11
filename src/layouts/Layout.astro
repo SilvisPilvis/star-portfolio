@@ -8,12 +8,12 @@ import Logo from "../assets/logo.svg"
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/svg+xml" href="../assets/cube.svg" />
+        <link rel="icon" type="image/svg+xml" href="../src/assets/cube.svg" />
 		<meta name="generator" content={Astro.generator} />
         <title>Portfolio</title>
         <meta name="description" content="Experienced web developer crafting modern, responsive websites and applications. Browse my featured work, coding skills, and professional background.">
 	</head>
-    <body>
+    <body class="min-h-screen flex flex-col">
         <header>
             <nav class="flex justify-between items-center p-4 bg-gray-900 text-white opacity-75">
                 <!-- <Image src={Logo} alt="My Logo" loading="lazy" width="64" height="64" fill class="rounded-full" /> -->
@@ -27,8 +27,10 @@ import Logo from "../assets/logo.svg"
                 <a href="/contact">Contact</a>
             </nav>
         </header>
-        <slot />
-        <footer>
+        <main class="flex-1">
+            <slot />
+        </main>
+        <footer class="bg-background pt-2">
             <hr class="border-blue-400" />
             <!-- <p class="text-center text-sm text-gray-400">© 2023 Amaterasu. All rights reserved.</p> -->
             <p class="text-center text-sm text-gray-400">copyright © {new Date().getFullYear()} Silvestrs. All rights reserved.</p>
@@ -36,11 +38,14 @@ import Logo from "../assets/logo.svg"
 	</body>
 </html>
 
-<style>
+<!-- <style>
 	html,
 	body {
 		margin: 0;
 		width: 100vw;
 		height: 100vh;
-	}
-</style>
+    }
+    slot, main {
+        height: 100%;
+    }
+</style> -->
