@@ -13,11 +13,11 @@ import Logo from "../assets/logo.svg"
         <title>Portfolio</title>
         <meta name="description" content="Experienced web developer crafting modern, responsive websites and applications. Browse my featured work, coding skills, and professional background.">
 	</head>
-    <body class="min-h-screen flex flex-col">
+    <body class="min-h-screen grid grid-rows-[auto_1fr_auto]">
         <header>
-            <nav class="flex justify-between items-center p-4 bg-gray-900 text-white opacity-75">
+            <nav class="grid grid-cols-8 gap-8 items-center p-4 bg-gray-900 text-white opacity-75">
                 <!-- <Image src={Logo} alt="My Logo" loading="lazy" width="64" height="64" fill class="rounded-full" /> -->
-                <Logo class="rounded-full fill-rose-50"/>
+                <Logo class="rounded-full fill-rose-50 w-16 h-16" />
                 <a href="/">Home</a>
                 <a href="/about">About</a>
                 <a href="/tech">Tech Stack</a>
@@ -27,7 +27,7 @@ import Logo from "../assets/logo.svg"
                 <a href="/contact">Contact</a>
             </nav>
         </header>
-        <main class="flex-1">
+        <main class="bg-background grid place-items-center">
             <slot />
         </main>
         <footer class="bg-background pt-2">
@@ -38,14 +38,13 @@ import Logo from "../assets/logo.svg"
 	</body>
 </html>
 
-<!-- <style>
-	html,
-	body {
-		margin: 0;
-		width: 100vw;
-		height: 100vh;
-    }
-    slot, main {
-        height: 100%;
-    }
-</style> -->
+<style>
+@font-face {
+    font-family: Poppins;
+    src: url("../../public/fonts/Poppins/Poppins-Regular.ttf");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+</style>
