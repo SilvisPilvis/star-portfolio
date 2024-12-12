@@ -11,8 +11,8 @@ import Me from '../assets/es.png';
             About Me:
         </p>
         <div class="flex sm:flex-row flex-col justify-center items-center gap-12">
-            <Picture src={Me} alt="Amaterasu" class="w-2/3 max-h-max rounded-lg" formats={["avif"]} />
-            <!-- <Image src={Me} alt="Amaterasu" class="w-1/3 max-h-max rounded-lg" /> -->
+            <!-- <Picture src={Me} alt="Amaterasu" class="w-2/3 max-h-max rounded-lg" formats={["avif"]} /> -->
+            <Image src={Me} alt="Amaterasu" loading="lazy" decoding="async" class="w-1/3 rounded-lg" />
             <div class="flex justify-center flex-col">
                 <p
                     class="text-text fancy-text text-outline font-bold uppercase sm:text-6xl text-6xl ml-[1ch] h-[0.75em]"
