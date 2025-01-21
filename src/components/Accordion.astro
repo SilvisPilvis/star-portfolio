@@ -1,0 +1,140 @@
+---
+interface AccordionItem {
+  title: string;
+  content: string;
+}
+
+interface Props {
+  items: AccordionItem[];
+  defaultOpen?: number; // Index of initially open item
+}
+
+const { items, defaultOpen = -1 } = Astro.props;
+---
+
+<div class="accordion">
+  {items.map((item, index) => (
+    <div class="accordion-item" data-index={index}>
+      <button class="accordion-header">
+        {item.title}
+        <svg 
+          class="accordion-icon" 
+          width="24" 
+          height="24" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke="currentColor" 
+          stroke-width="2" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"
+        >
+          <path d="m6 9 6 6 6-6"/>
+        </svg>
+      </button>
+      <div class="accordion-content">
+        <p>{item.content}</p>
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .accordion {
+    max-width: 600px;
+    margin: 20px auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+
+  .accordion-item {
+    border-bottom: 1px solid #ddd;
+  }
+
+  .accordion-item:last-child {
+    border-bottom: none;
+  }
+
+  .accordion-header {
+    width: 100%;
+    padding: 15px 20px;
+    background: #f4f4f4;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: left;
+    transition: background-color 0.3s ease;
+  }
+
+  .accordion-header:hover {
+    background: #ebebeb;
+  }
+
+  .accordion-content {
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease;
+  }
+
+  .accordion-content p {
+    margin: 0;
+    padding: 20px;
+    line-height: 1.5;
+  }
+
+  .accordion-item.active .accordion-content {
+    max-height: 200px;
+    padding: 0;
+  }
+
+  .accordion-icon {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+  }
+
+  .accordion-item.active .accordion-icon {
+    transform: rotate(180deg);
+  }
+</style>
+
+<script>
+  // Initialize accordion functionality
+  function initAccordion() {
+    const accordionItems = document.querySelectorAll('.accordion-item');
+
+    accordionItems.forEach(item => {
+      const header = item.querySelector('.accordion-header');
+      
+      header?.addEventListener('click', () => {
+        // Get currently active item (if any)
+        const currentActive = document.querySelector('.accordion-item.active');
+        
+        // If there's an active item and it's not the clicked item, close it
+        if (currentActive && currentActive !== item) {
+          currentActive.classList.remove('active');
+        }
+        
+        // Toggle active class on clicked item
+        item.classList.toggle('active');
+      });
+    });
+
+    // Set default open item if specified
+    const defaultOpenItem = document.querySelector(`[data-index="${Astro.props.defaultOpen}"]`);
+    if (defaultOpenItem) {
+      defaultOpenItem.classList.add('active');
+    }
+  }
+
+  // Run initialization when the component mounts
+  initAccordion();
+
+  // Re-run initialization when the page is navigated via View Transitions
+  document.addEventListener('astro:page-load', initAccordion);
+</script>

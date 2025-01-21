@@ -1,0 +1,32 @@
+---
+import Accordion from '../components/Accordion.astro';
+
+const accordionItems = [
+  {
+    title: 'Instaclone',
+    content: 'This is the content for section 1. You can put any text here.'
+  },
+  {
+    title: 'Spaceful',
+    content: 'This is the content for section 2. It can contain text, images, or other elements.'
+  },
+  {
+    title: 'Ticket Trade',
+    content: 'And here\'s the content for section 3. Each section can have different heights.'
+  },
+  {
+    title: 'Memquest',
+    content: 'And here\'s the content for section 3. Each section can have different heights.'
+  },
+  {
+    title: 'MinimumWage',
+    content: 'And here\'s the content for section 3. Each section can have different heights.'
+    },
+  {
+    title: 'GoQuic',
+    content: 'And here\'s the content for section 3. Each section can have different heights.'
+  }
+];
+---
+
+<Accordion items={accordionItems} defaultOpen={0} />
